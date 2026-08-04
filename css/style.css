@@ -4,11 +4,11 @@
   --bg: #fafafa;
   --text: #1a1a1a;
   --text-muted: #555;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --accent: #256b99;
+  --accent-hover: #174f76;
   --card-bg: #fff;
   --border: #e5e7eb;
-  --category-color: #2563eb;
+  --category-color: #256b99;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -16,11 +16,11 @@
     --bg: #111;
     --text: #e5e5e5;
     --text-muted: #a3a3a3;
-    --accent: #60a5fa;
-    --accent-hover: #93c5fd;
+    --accent: #82b9d8;
+    --accent-hover: #b1d5e8;
     --card-bg: #1a1a1a;
     --border: #333;
-    --category-color: #60a5fa;
+    --category-color: #82b9d8;
   }
 }
 
@@ -28,11 +28,11 @@
   --bg: #111;
   --text: #e5e5e5;
   --text-muted: #a3a3a3;
-  --accent: #60a5fa;
-  --accent-hover: #93c5fd;
+  --accent: #82b9d8;
+  --accent-hover: #b1d5e8;
   --card-bg: #1a1a1a;
   --border: #333;
-  --category-color: #60a5fa;
+  --category-color: #82b9d8;
 }
 
 * {
@@ -94,6 +94,13 @@ a:hover {
 .site-nav a:hover {
   color: var(--accent);
   text-decoration: none;
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35rem;
 }
 
 .header-utils {
@@ -418,10 +425,18 @@ a:hover {
 
 /* All news page */
 .page-title {
-  font-size: 1.5rem;
+  font-size: clamp(1.65rem, 3vw, 2rem);
   font-weight: 600;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.75rem;
   padding-top: 1rem;
+}
+
+.page-intro {
+  max-width: 46rem;
+  margin: 0 0 2.5rem;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.65;
 }
 
 .news-list .news-card {
@@ -457,16 +472,20 @@ a:hover {
 
 /* Publications page */
 .pub-category {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text);
-  margin: 2rem 0 1rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  margin: 2.5rem 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
 }
 
 .pub-section .pub-category:first-child {
   margin-top: 0;
+}
+
+.pub-section + .pub-section {
+  margin-top: 2.5rem;
 }
 
 .pub-section h2 {
@@ -535,53 +554,64 @@ a:hover {
   margin-right: 1rem;
 }
 
-/* Visitor map */
-.visitor-map-section {
-  margin-top: 1.5rem;
-  text-align: center;
-  width: 100%;
+/* Research page */
+.research-list {
+  max-width: 52rem;
 }
 
-.visitor-map-title {
-  font-size: 1.125rem;
-  font-weight: 600;
+.research-item {
+  margin: 0 0 2.5rem;
+  padding: 0 0 2.25rem 1.25rem;
+  border-left: 3px solid var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
+.research-item:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.research-label {
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.research-title {
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+  line-height: 1.35;
+}
+
+.research-subproject {
+  margin-top: 1.25rem;
+}
+
+.research-subproject + .research-subproject {
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.research-subproject h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.research-desc {
+  max-width: 48rem;
   margin: 0 0 0.75rem;
-  color: var(--text);
-}
-
-.visitor-map-wrap {
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--card-bg);
-}
-
-.visitor-map-inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-  width: 100%;
-}
-
-.visitor-map-placeholder {
-  padding: 2rem;
-  text-align: center;
   color: var(--text-muted);
-  margin: 0;
+  line-height: 1.6;
 }
 
-/* Center and scale: put injected content’s center at widget center, then scale from center */
-.visitor-map-inner .visitor-map-globe,
-.visitor-map-inner > div,
-.visitor-map-inner > iframe {
-  flex-shrink: 0;
-  border: none !important;
+.research-links {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 /* Footer */
@@ -609,7 +639,7 @@ img {
 
 @media (max-width: 768px) {
   .page-title {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .pub-item {
